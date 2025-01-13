@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        color: #333;
+        padding: 20px;
+      }
+      .header {
+        font-size: 24px;
+        color: #4caf50;
+      }
+      .otp-code {
+        font-size: 28px;
+        color: #4351d1;
+        font-weight: bold;
+      }
+      .company_image {
+        height: 250px;
+        width: 100%;
+      }
+      .footer {
+        margin-top: 20px;
+      }
+      .footer img {
+        width: 100px;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1 class="header">Your Account Recovery Link</h1>
+      <p>Please use the following link to verify your account:</p>
+      <p class="otp-code">
+        <a href="http://localhost:5173/auth/<%= token %>/password-change"
+          >Verification Link</a
+        >
+      </p>
+      <div class="footer">
+        <p>Thank you for using our service!</p>
+        <!-- Add your image here -->
+        <!-- <img
+          class="company_image"
+          src="https://images.unsplash.com/photo-1725654730257-236397b73557?q=80&w=2079&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="company_log"
+        /> -->
+      </div>
+    </div>
+  </body>
+</html>

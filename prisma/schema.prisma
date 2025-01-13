@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "sqlserver"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model User {
+  id                 String   @id @unique @default(uuid())
+  email              String   @unique
+  password           String
+  needPasswordChange Boolean  @default(false)
+  status             String   @default("PENDING")
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  verificationInfo   String? // Store JSON as a serialized string
+  userType           String   @default("VIEWER")
+  Profile            Profile?
+
+  @@map("users")
+}
+
+model Profile {
+  id               String   @id @unique @default(uuid())
+  firstName        String
+  lastName         String
+  email            String   @unique
+  age              Int?
+  gender           String?
+  pronoun          String?
+  profilePhoto     String?
+  contactNumber    String
+  bio              String?
+  isDeleted        Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  preferredContent String?
+
+  user User @relation(fields: [email], references: [email])
+
+  @@map("user_profile")
+}
+
+// enum UserStatus {
+//   ACTIVE
+//   BLOCKED
+//   DELETED
+//   PENDING
+//   FORGOTPASS
+// }
+
+// enum UserType {
+//   VIEWER
+//   CREATOR
+// }
+
+// enum Gender {
+//   MALE
+//   FEMALE
+//   OTHER
+// }
